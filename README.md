@@ -8,6 +8,8 @@ Friday: Dev Meeting
 Sunday: All Member Meeting/Design Focus
 Dev Meeting Subject to other days
 
+Design Url: https://docs.google.com/document/d/1IRVAPkn3sS0gQnI1u_qt9nsxybku6Gca4NGzSvr8HGo/edit
+
 4/7/2024: Meeting 1, Basic application design format
 1. Login page: The initial page which is seen by users, allowing them to sign up/login to their account.
 2. Main page: The first page you see upon logging in. Features required:
