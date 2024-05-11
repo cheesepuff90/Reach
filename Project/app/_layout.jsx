@@ -1,6 +1,7 @@
 import { useFonts } from 'expo-font';
-import { SplashScreen } from 'expo-router';
-import { Text } from 'react-native';
+import { SplashScreen, Stack } from 'expo-router';
+import { Text, Slot } from 'react-native';
+import { useEffect } from 'react';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -26,11 +27,9 @@ const RootLayout = () => {
       if (!fontsLoaded && !error) return null;
 
     return (
-        <>
-            <Text>Header</Text>
-            <Slot />
-            <Text>Footer</Text>
-        </>
+      <Stack>
+        <Stack.screen name="index" options={{headerShown:false}} />
+      </Stack>
     )
 }
 
