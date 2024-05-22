@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "PracticeReach",
-    "slug": "PracticeReach",
-    "scheme": "PracticeReach",
+    "name": "Aora", 
+    "slug": "aora",
+    "scheme": "aora",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -12,9 +12,6 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
     "ios": {
       "supportsTablet": true
     },
