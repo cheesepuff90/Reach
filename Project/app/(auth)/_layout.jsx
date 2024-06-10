@@ -3,9 +3,12 @@ import { Stack } from 'expo-router'
 import React from 'react'
 import { StatusBar } from 'expo-status-bar'
 
+import GlobalProvider from '../../context/GlobalProvider';
+
 const AuthLayout = () => {
   return (
     <>
+    <GlobalProvider>
     <Stack>
       <Stack.Screen
       name="sign-in"
@@ -20,6 +23,7 @@ const AuthLayout = () => {
       }}
       />
     </Stack>
+    </GlobalProvider>
 
     <StatusBar backgroundColor="#161622" style="light"/>
 
