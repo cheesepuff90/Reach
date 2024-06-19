@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 
+
 const useAppwrite = (fn) => {
-  const [data, setData] = usState([]);
+  const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchData = async () => {

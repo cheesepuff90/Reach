@@ -6,6 +6,10 @@ import Trending from "../../components/Trending";
 import EmptyState from "../../components/EmptyState";
 import { getAllPosts } from "../../lib/appwrite";
 import VideoCard from "../../components/VideoCard";
+import useAppwrite from "../../lib/useAppwrite";
+import { FlatList } from "react-native";
+import { RefreshControl } from "react-native";
+import { Image } from "react-native";
 
 import { images } from "../../constants";
 
