@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, FlatList, RefreshControl, Image } from "react-native";
 import React, { useState, useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import SearchInput from "../../components/SearchInput";
@@ -7,10 +7,6 @@ import EmptyState from "../../components/EmptyState";
 import { getAllPosts } from "../../lib/appwrite";
 import VideoCard from "../../components/VideoCard";
 import useAppwrite from "../../lib/useAppwrite";
-import { FlatList } from "react-native";
-import { RefreshControl } from "react-native";
-import { Image } from "react-native";
-
 import { images } from "../../constants";
 
 const Home = () => {
@@ -27,11 +23,11 @@ const Home = () => {
   console.log(posts);
 
   return (
-    <SafeAreaView className="bg-primary border-2 border-red-500 h-full">
+    <SafeAreaView className="bg-primary h-full">
       <FlatList
-        data={[{ id: 1 }]}
+        data={posts}
         keyExtractor={(item) => item.$id}
-        renderitem={({ item }) => <VideoCard video={item} />}
+        renderItem={({ item }) => <VideoCard video={item} />}
         ListHeaderComponent={() => (
           <View className="my-6 px-4 space-y-6">
             <View className="justify-between items-start flex-row mb-6">
@@ -52,13 +48,13 @@ const Home = () => {
                 />
               </View>
             </View>
-            <SearchInput />
+            <SearchInput/>
 
             <View className="w-full flex-1 pt-5 pb-8">
               <Text className="text-gray-100 text-lg font-pregular mb-3">
                 Latest Videos
               </Text>
-              <Trending post={[{ id: 1 }, { id: 2 }, { id: 3 }] ?? []} />
+              <Trending posts={[{ id: 1 }, { id: 2 }, { id: 3 }] ?? []} />
             </View>
           </View>
         )}
