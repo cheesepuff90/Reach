@@ -4,8 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import SearchInput from "../../components/SearchInput";
 import Trending from "../../components/Trending";
 import EmptyState from "../../components/EmptyState";
-import { getAllPosts } from "../../lib/appwrite";
-import { getLatestPosts } from "../../lib/appwrite";
+import { getAllPosts, getLatestPosts } from "../../lib/appwrite";
 import VideoCard from "../../components/VideoCard";
 import useAppwrite from "../../lib/useAppwrite";
 import { images } from "../../constants";
@@ -21,8 +20,6 @@ const Home = () => {
     await refetch();
     setRefreshing(false);
   };
-
-  console.log(posts);
 
   return (
     <SafeAreaView className="bg-primary h-full">
