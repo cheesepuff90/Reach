@@ -67,12 +67,15 @@ export const createUser = async (email, password, username) => {
 
 export const signIn = async (email, password) => {
   try {
-    await account.deleteSession("current")
     const session = await account.createEmailPasswordSession(email, password);
     return session;
   } catch (error) {
     throw new Error(error);
   }
+};
+
+export const sessionLogOut = async () => {
+  await account.deleteSession("current")
 };
 
 export const getCurrentUser = async () => {
@@ -104,3 +107,13 @@ export const getAllPosts = async () => {
     throw new Error(error);
   }
 };
+
+export const getLatestPosts = async () => {
+  try {
+    const posts = await databases.listDocuments(databaseId, videoCollectionId, [Query.orderDesc('$createdAt', Query.limit(7))]);
+
+    return posts.documents;
+  } catch (error) {
+    throw new Error(error);
+  }
+}
