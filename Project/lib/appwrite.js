@@ -1,20 +1,12 @@
-import {
-  Account,
-  Avatars,
-  Client,
-  Databases,
-  ID,
-  Query,
-} from "react-native-appwrite";
-
+import { Client, Account, ID, Avatars, Databases, Query } from 'react-native-appwrite';
 export const config = {
-  endpoint: "https://cloud.appwrite.io/v1",
-  platform: "com.jsm.aora",
-  projectId: "66664d4800041b383112",
-  databaseId: "66664e9a0006de6bc348",
-  userCollectionId: "66664ec200147cc51a2a",
-  videoCollectionId: "66664f050033c58db1de",
-  storageId: "6666506600317c4cccea",
+    endpoint: 'https://cloud.appwrite.io/v1',
+    platform: 'com.reachDemo.aora',
+    projectId: '666c52d80000ee6b6475',
+    databaseId: '666c546a000e3459bd99',
+    userCollectionId: '666c549b00378fd7920b',
+    videoCollectionId: '666c54c30029a1464954',
+    storageId: '666c59e7000f17fee66b'
 };
 
 const {
@@ -24,7 +16,7 @@ const {
   databaseId,
   userCollectionId,
   videoCollectionId,
-  storageId,
+  storageId
 } = config;
 
 // Init your React Native SDK
@@ -82,6 +74,10 @@ export const signIn = async (email, password) => {
   }
 };
 
+export const sessionLogOut = async () => {
+  await account.deleteSession("current")
+};
+
 export const getCurrentUser = async () => {
   try {
     const currentAccount = await account.get();
@@ -104,10 +100,36 @@ export const getCurrentUser = async () => {
 
 export const getAllPosts = async () => {
   try {
-    const post = await databases.listDocuments(databaseId, videoCollectionId);
+    const posts = await databases.listDocuments(databaseId, videoCollectionId);
 
     return posts.documents;
   } catch (error) {
     throw new Error(error);
   }
 };
+
+export const getLatestPosts = async () => {
+  try {
+    const posts = await databases.listDocuments(
+      databaseId, 
+      videoCollectionId, 
+      [Query.orderDesc('$createdAt', Query.limit(7))]);
+
+    return posts.documents;
+  } catch (error) {
+    throw new Error(error);
+  }
+}
+
+export const searchPosts = async (query) => {
+  try {
+    const posts = await databases.listDocuments(
+      databaseId, 
+      videoCollectionId, 
+      [Query.search('title', query)]);
+
+    return posts.documents;
+  } catch (error) {
+    throw new Error(error);
+  }
+}
