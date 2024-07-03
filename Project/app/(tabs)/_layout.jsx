@@ -12,7 +12,7 @@ const TabIcon = ({icon,color,name,focused}) => {
                 tintColor={color}
                 className="w-6 h-6"
             />
-            <Text className={`${focused ? 'font-psemibold' : 'font-pregular'} text-xs`} style={{color:color}}>
+            <Text className={`${focused ? 'font-extralight' : 'font-extralight'} text-xs`} style={{color:color}}>
                 {name}
             </Text>
         </View>
@@ -25,13 +25,13 @@ const TabsLayout = () => {
         <Tabs
             screenOptions={{
                 tabBarShowLabel: false,
-                tabBarActiveTintColor: '#FFA001',
+                tabBarActiveTintColor: '#E39B9B',
                 tabBarInactiveTintColor: '#CDCDE0',
                 tabBarStyle:{
-                    backgroundColor: '#161622',
-                    borderTopWidth: 1,
-                    borderTopColor: '#232533',
-                    height: 84,
+                    backgroundColor: '#000000',
+                    borderTopWidth: 25.24,
+                    borderTopColor: "#000000",
+                    height: 83,
                 }
             }}>
             <Tabs.Screen 
@@ -49,46 +49,63 @@ const TabsLayout = () => {
                     )
                 }}
             />
+
             <Tabs.Screen 
-                name="bookmark"
+                name="college-review"
                 options={{
-                    title: "Bookmark",
+                    title: "College Review",
                     headerShown: false,
                     tabBarIcon: ({ color, focused }) => (
                         <TabIcon
-                        icon={icons.bookmark}
+                        icon={icons.home}
                         color={color}
-                        name="Bookmark"
+                        name="College Review"
                         focused={focused}
                         />
                     )
                 }}
-            />            
+            />  
+      
             <Tabs.Screen 
                 name="create"
                 options={{
-                    title: "Create",
                     headerShown: false,
                     tabBarIcon: ({ color, focused }) => (
                         <TabIcon
                         icon={icons.plus}
                         color={color}
-                        name="Create"
                         focused={focused}
                         />
                     )
                 }}
-            />            
+            />    
+
+            <Tabs.Screen 
+                name="bookmark"
+                options={{
+                    title: "Internship",
+                    headerShown: false,
+                    tabBarIcon: ({ color, focused }) => (
+                        <TabIcon
+                        icon={icons.bookmark}
+                        color={color}
+                        name="Internship"
+                        focused={focused}
+                        />
+                    )
+                }}
+            />      
+
             <Tabs.Screen 
                 name="profile"
                 options={{
-                    title: "Profile",
+                    title: "Me",
                     headerShown: false,
                     tabBarIcon: ({ color, focused }) => (
                         <TabIcon
                         icon={icons.profile}
                         color={color}
-                        name="Profile"
+                        name="Me"
                         focused={focused}
                         />
                     )
