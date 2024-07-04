@@ -13,6 +13,7 @@ import eye from "../assets/icons/eye.png";
 import play from "../assets/icons/play.png";
 import leftArrowCircle from "../assets/icons/leftArrowCircle.png";
 import rightArrowCircle from "../assets/icons/rightArrowCircle.png";
+import searchGray from "../assets/icons/searchGray.png";
 
 export default {
   play,
@@ -29,5 +30,6 @@ export default {
   eyeHide,
   eye,
   leftArrowCircle,
-  rightArrowCircle
+  rightArrowCircle,
+  searchGray
 };
