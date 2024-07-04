@@ -30,7 +30,7 @@ const SearchInput = () => {
         >
             <Image 
                 source = {icons.search}
-                className = 'w-5 h-5'
+                className = 'w-23 h-27'
                 resizemode = 'contain'
             />
         </TouchableOpacity>
