@@ -34,7 +34,7 @@ const TrendingItem = ({activeItem, item}) => {
       {play ? (
         <Video
           source={{uri:item.video}}
-          className = "w-52 h-72 rounded-[35px] mt-3 bg-white/10"
+          className = "w-40 h-16 rounded-[35px] mt-3 bg-white/10"
           resizeMode={ResizeMode.CONTAIN}
           useNativeControls
           shouldPlay
@@ -54,7 +54,7 @@ const TrendingItem = ({activeItem, item}) => {
             source={{
               uri:item.thumbnail
             }}
-            className="w-52 h-72 rounded-[35px] my-5 overflow-hidden shadow-lg shadow-black/40"
+            className="w-40 h-16 rounded-[35px] my-5 overflow-hidden shadow-lg shadow-black/40"
             resizeMode='cover'
           />
           <Image
