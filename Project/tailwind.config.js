@@ -19,12 +19,20 @@ module.exports = {
           100: "#CDCDE0",
         },
         white: {
-          DEFAULT: "#F5F5F5",
-          100: "#FFFFFF"
+          DEFAULT: "#FFFFFF",
+          100: "#F5F5F5",
+        },
+        rose: {
+          DEFAULT: "#fff1f2",
+          100: "#E39B9B",
+        },
+        blue: {
+          DEFAULT: "#1974D2",
+          100: "#6FC0DB",
         },
         pink: {
-          DEFAULT: "#E59B9B"
-        }
+          DEFAULT: "#E59B9B",
+        },
       },
       fontFamily: {
         pthin: ["Poppins-Thin", "sans-serif"],
