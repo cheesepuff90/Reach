@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text, Image } from 'react-native'
 import { Stack } from 'expo-router'
 import React from 'react'
 import { StatusBar } from 'expo-status-bar'

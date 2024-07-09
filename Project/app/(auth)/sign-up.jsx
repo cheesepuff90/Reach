@@ -44,12 +44,11 @@ const SignUp = () => {
   }
 
   return (
-    <SafeAreaView className="bg-primary h-full">
+    <SafeAreaView className="bg-white h-full">
       <ScrollView>
-        <View className="w-full justify-center min-h-[85vh] px-4 my-6">
-          <Image source={images.logo} resizeMode='contain' className="w-[115px] h-[35px]"/>
+        <View className="w-full justify-center min-h-[85vh] px-4 my-0">
 
-          <Text className="text-2xl text-white text-semibold mt-10 font-psemibold">Sign up to Aora</Text>
+          <Text className="text-2xl text-center text-rose-100 text-semibold mt-10 font-psemibold">Sign up to Reach</Text>
 
           <FormField
             title="Username"
@@ -81,10 +80,7 @@ const SignUp = () => {
           />
 
           <View className="justify-center pt-5 flex-row gap-2">
-            <Text className = "text-lg text-gray-100 font-pregular">
-              Have an account already?
-            </Text>
-            <Link href="/sign-in" className="text-lg font-psemibold text-secondary">Sign In</Link>
+            <Link href="/sign-in" className="text-lg text-blue-400">Have an account already? Sign In</Link>
           </View>
         </View>
       </ScrollView>

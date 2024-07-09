@@ -44,12 +44,12 @@ const SignIn = () => {
   }
 
   return (
-    <SafeAreaView className="bg-primary h-full">
+    <SafeAreaView className="bg-white h-full">
       <ScrollView>
         <View className="w-full justifyty-center min-h-[85vh] px-4 my-6">
           <Image source={images.logo} resizeMode='contain' className="w-[115px] h-[35px]"/>
 
-          <Text className="text-2xl text-white text-semibold mt-10 font-psemibold">Log in to Aora</Text>
+          <Text className="text-4xl text-semibold text-center mt-10 font-psemibold text-secondary">Reach</Text>
 
           <FormField
             title="Email"
@@ -67,17 +67,14 @@ const SignIn = () => {
           />
 
           <CustomButton 
-            title = "Sign In"
+            title = "Log In"
             handlePress={submit}
             containerStyles="mt-7"
             isLoading={isSubmitting}
           />
 
           <View className="justify-center pt-5 flex-row gap-2">
-            <Text className = "text-lg text-gray-100 font-pregular">
-              Don't have account?
-            </Text>
-            <Link href="/sign-up" className="text-lg font-psemibold text-secondary">Sign Up</Link>
+            <Link href="/sign-up" className="text-lg text-blue-400">Don't have account? Sign Up</Link>
           </View>
         </View>
       </ScrollView>
