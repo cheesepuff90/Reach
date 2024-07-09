@@ -1,4 +1,4 @@
-import { View, Text, FlatList, RefreshControl, Image } from "react-native";
+import { View, Text, FlatList, RefreshControl, Image, TouchableOpacity } from "react-native";
 import React, { useState, useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import SearchInput from "../../components/SearchInput";
@@ -8,6 +8,9 @@ import { getAllPosts, getLatestPosts } from "../../lib/appwrite";
 import VideoCard from "../../components/VideoCard";
 import useAppwrite from "../../lib/useAppwrite";
 import { images } from "../../constants";
+import { icons } from '../../constants'
+import { router } from "expo-router";
+
 import { useGlobalContext } from "../../context/GlobalProvider";
 
 const Home = () => {
@@ -30,32 +33,64 @@ const Home = () => {
         keyExtractor={(item) => item.$id}
         renderItem={({ item }) => <VideoCard video={item} />}
         ListHeaderComponent={() => (
-          <View className="my-6 px-4 space-y-6">
-            <View className="justify-between items-start flex-row mb-6">
+          <View className="mb-6 space-y-1">
+            <View className="px-4 justify-between items-start flex-row mb-2">
               <View>
-                <Text className="font-pmedium text-sm text-gray-100">
-                  Welcome Back
-                </Text>
-                <Text className="text-2xl font-psemibold text-white">
-                  {user?.username}
-                </Text>
+                <Text className="font-pmedium text-2xl text-pink mt-1.5">Reach</Text>
               </View>
-
-              <View className="mt-1.5">
+              <SearchInput/>
+              <TouchableOpacity 
+                className="mt-2"
+                onPress={()=>{router.push(`/profile`)}}
+              >
                 <Image
-                  source={images.logoSmall}
-                  className="w-9 h-10"
+                  source={icons.profile}
+                  className="w-5 h-6"
                   resizemode="contain"
                 />
+              </TouchableOpacity>
+            </View>
+
+            <View className="w-full h-8 justify-center">
+              <View className="flex-row justify-between mx-[80px]">
+                  <Text className="text-lg font-semibold">Public</Text>
+                  <Text className="text-lg font-semibold">Private</Text>
+              </View>
+              <Image 
+                source={images.underLine}
+                className="w-[180px] h-[2px] absolute -bottom-0 left-[20px]"
+                resizeMode='contain'
+              />
+            </View>
+
+            <View className="w-full h-[32px] justify-center bg-pink">
+              <Text>tag</Text>
+            </View>
+
+            <View className="bg-pink w-full h-[62px] justify-center">
+              <Text className="text-3xl">Ads</Text>
+            </View>
+
+            <View className="w-full flex-row px-3 justify-between items-center border-2 border-pink">
+              <View className="mr-5">
+                <Image
+                    source={icons.leftArrowCircle}
+                    className="w-[25px] h-[25px]"
+                    resizemode="contain"
+                  />
+              </View>
+              <Trending posts={latestPosts ?? []} />
+              <View className="ml-5">
+                <Image
+                    source={icons.rightArrowCircle}
+                    className="w-[25px] h-[25px]"
+                    resizemode="contain"
+                  />
               </View>
             </View>
-            <SearchInput/>
 
-            <View className="w-full flex-1 pt-5 pb-8">
-              <Text className="text-gray-100 text-lg font-pregular mb-3">
-                Latest Videos
-              </Text>
-              <Trending posts={latestPosts ?? []} />
+            <View className="bg-pink w-full h-[130px] justify-center">
+              <Text className="text-3xl">Category</Text>
             </View>
           </View>
         )}
