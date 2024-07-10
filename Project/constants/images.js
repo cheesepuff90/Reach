@@ -6,5 +6,6 @@ import logo from "../assets/images/logo.png";
 import logoSmall from "../assets/images/logo-small.png";
 import empty from "../assets/images/empty.png";
 import underLine from "../assets/images/underLine.png";
+import michigan from "../assets/images/michigan.png";
 
-export default { profile, thumbnail, cards, path, logo, logoSmall, empty, underLine };
+export default { profile, thumbnail, cards, path, logo, logoSmall, empty, underLine, michigan };
