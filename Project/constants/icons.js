@@ -14,6 +14,10 @@ import play from "../assets/icons/play.png";
 import leftArrowCircle from "../assets/icons/leftArrowCircle.png";
 import rightArrowCircle from "../assets/icons/rightArrowCircle.png";
 import searchGray from "../assets/icons/searchGray.png";
+import bubble from "../assets/icons/bubble.png";
+import bookmark2 from "../assets/icons/bookmark2.png";
+import michigan from "../assets/icons/michigan.png";
+
 
 export default {
   play,
@@ -31,5 +35,8 @@ export default {
   eye,
   leftArrowCircle,
   rightArrowCircle,
-  searchGray
+  searchGray,
+  bubble,
+  bookmark2,
+  michigan
 };

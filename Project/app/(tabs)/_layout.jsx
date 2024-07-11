@@ -51,7 +51,7 @@ const TabsLayout = () => {
             />
 
             <Tabs.Screen 
-                name="college-review"
+                name="collegeReview"
                 options={{
                     title: "College Review",
                     headerShown: false,

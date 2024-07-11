@@ -7,4 +7,4 @@ import logoSmall from "../assets/images/logo-small.png";
 import empty from "../assets/images/empty.png";
 import underLine from "../assets/images/underLine.png";
 
-export default { profile, thumbnail, cards, path, logo, logoSmall, empty, underLine };
+export default { profile, thumbnail, cards, path, logo, logoSmall, empty, underLine, };
