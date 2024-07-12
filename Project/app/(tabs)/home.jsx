@@ -47,6 +47,7 @@ const Home = () => {
                   source={icons.profile}
                   className="w-5 h-6"
                   resizemode="contain"
+                  tintColor={'#000000'}
                 />
               </TouchableOpacity>
             </View>

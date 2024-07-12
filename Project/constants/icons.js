@@ -17,6 +17,8 @@ import searchGray from "../assets/icons/searchGray.png";
 import bubble from "../assets/icons/bubble.png";
 import bookmark2 from "../assets/icons/bookmark2.png";
 import michigan from "../assets/icons/michigan.png";
+import create from "../assets/icons/create.png";
+import message from "../assets/icons/message.png";
 
 
 export default {
@@ -38,5 +40,7 @@ export default {
   searchGray,
   bubble,
   bookmark2,
-  michigan
+  michigan,
+  create,
+  message
 };
