@@ -10,9 +10,9 @@ const TabIcon = ({icon,color,name,focused}) => {
                 source={icon}
                 resizeMode='contain'
                 tintColor={color}
-                className="w-6 h-6"
+                // className="w-6 h-6"
             />
-            <Text className={`${focused ? 'font-extralight' : 'font-extralight'} text-xs`} style={{color:color}}>
+            <Text className={`${focused ? 'font-extralight' : 'font-extralight'} text-xs`} style={{color:color}} numberOfLines={1}>
                 {name}
             </Text>
         </View>
@@ -57,9 +57,9 @@ const TabsLayout = () => {
                     headerShown: false,
                     tabBarIcon: ({ color, focused }) => (
                         <TabIcon
-                        icon={icons.home}
+                        icon={icons.search}
                         color={color}
-                        name="College Review"
+                        name="Review"
                         focused={focused}
                         />
                     )
@@ -72,8 +72,8 @@ const TabsLayout = () => {
                     headerShown: false,
                     tabBarIcon: ({ color, focused }) => (
                         <TabIcon
-                        icon={icons.plus}
-                        color={color}
+                        icon={icons.create}
+                        // color={color}
                         focused={focused}
                         />
                     )
@@ -87,7 +87,7 @@ const TabsLayout = () => {
                     headerShown: false,
                     tabBarIcon: ({ color, focused }) => (
                         <TabIcon
-                        icon={icons.bookmark}
+                        icon={icons.message}
                         color={color}
                         name="Internship"
                         focused={focused}
