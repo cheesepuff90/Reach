@@ -53,13 +53,13 @@ const Home = () => {
             </View>
 
             <View className="w-full h-8 justify-center">
-              <View className="flex-row justify-between mx-[80px]">
+              <View className="flex-row justify-around">
                   <Text className="text-lg font-semibold">Public</Text>
                   <Link href="/private" className="text-lg font-semibold">Private</Link>
               </View>
               <Image 
                 source={images.underLine}
-                className="w-[180px] h-[2px] absolute -bottom-0 left-[20px]"
+                className="w-[180px] h-[2px] absolute -bottom-0 justify-around"
                 resizeMode='contain'
               />
             </View>
