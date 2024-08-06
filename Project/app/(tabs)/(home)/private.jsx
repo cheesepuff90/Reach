@@ -1,17 +1,17 @@
 import { View, Text, FlatList, RefreshControl, Image, TouchableOpacity } from "react-native";
 import React, { useState, useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import SearchInput from "../../components/SearchInput";
-import Trending from "../../components/Trending";
-import EmptyState from "../../components/EmptyState";
-import { getAllPosts, getLatestPosts } from "../../lib/appwrite";
-import VideoCard from "../../components/VideoCard";
-import useAppwrite from "../../lib/useAppwrite";
-import { images } from "../../constants";
-import { icons } from '../../constants'
-import { router } from "expo-router";
+import SearchInput from "../../../components/SearchInput";
+import Trending from "../../../components/Trending";
+import EmptyState from "../../../components/EmptyState";
+import { getAllPosts, getLatestPosts } from "../../../lib/appwrite";
+import VideoCard from "../../../components/VideoCard";
+import useAppwrite from "../../../lib/useAppwrite";
+import { images } from "../../../constants";
+import { icons } from '../../../constants'
+import { router, Link } from "expo-router";
 
-import { useGlobalContext } from "../../context/GlobalProvider";
+import { useGlobalContext } from "../../../context/GlobalProvider";
 
 const Home = () => {
   const { user, setUser, setIsLogged } = useGlobalContext();
@@ -54,12 +54,12 @@ const Home = () => {
 
             <View className="w-full h-8 justify-center">
               <View className="flex-row justify-between mx-[80px]">
-                  <Text className="text-lg font-semibold">Public</Text>
+                  <Link href="/public" className="text-lg font-semibold">Public</Link>
                   <Text className="text-lg font-semibold">Private</Text>
               </View>
               <Image 
                 source={images.underLine}
-                className="w-[180px] h-[2px] absolute -bottom-0 left-[20px]"
+                className="w-[180px] h-[2px] absolute -bottom-0 right-[20px]"
                 resizeMode='contain'
               />
             </View>
