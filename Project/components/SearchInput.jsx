@@ -9,7 +9,7 @@ const SearchInput = () => {
   const [query, setQuery] = useState('')
 
   return (
-      <View className="border-2 border-black w-48 h-10 px-2 bg-white rounded-2xl focus:border-secondary items-center flex flex-row space-x-4">
+      <View className="border-2 border-black w-1/2 h-10 px-2 bg-white rounded-2xl focus:border-secondary items-center flex flex-row space-x-4">
         <TouchableOpacity
           onPress={() =>{
             if(!query) {

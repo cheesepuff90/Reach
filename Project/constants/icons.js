@@ -19,6 +19,9 @@ import bookmark2 from "../assets/icons/bookmark2.png";
 import michigan from "../assets/icons/michigan.png";
 import create from "../assets/icons/create.png";
 import message from "../assets/icons/message.png";
+import right from "../assets/icons/right.png";
+import left from "../assets/icons/left.png";
+import olympic from "../assets/icons/olympic.png";
 
 
 export default {
@@ -42,5 +45,9 @@ export default {
   bookmark2,
   michigan,
   create,
-  message
+  message,
+  right,
+  left,
+  olympic
+  
 };
