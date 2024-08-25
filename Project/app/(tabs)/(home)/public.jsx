@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import SearchInput from "../../../components/SearchInput";
 import Trending from "../../../components/Trending";
+import Tag from "../../../components/Tag"
 import EmptyState from "../../../components/EmptyState";
 import { getAllPosts, getLatestPosts } from "../../../lib/appwrite";
 import VideoCard from "../../../components/VideoCard";
@@ -25,6 +26,13 @@ const Home = () => {
     await refetch();
     setRefreshing(false);
   };
+
+  tagPosts = [
+    {id: '1', tag: 'MBTI'},
+    {id: '2', tag: 'Research'},
+    {id: '3', tag: 'Iternship'},
+    {id: '4', tag: 'All'}
+  ]
 
   return (
     <SafeAreaView className="bg-white h-full">
@@ -55,7 +63,7 @@ const Home = () => {
             <View className="w-full h-8 justify-center">
               <View className="flex-row justify-around">
                   <Text className="text-lg font-semibold">Public</Text>
-                  <Link href="/private" className="text-lg font-semibold">Private</Link>
+                  <Link href="/private" className="text-gray-200 text-lg font-semibold">Private</Link>
               </View>
               <Image 
                 source={images.underLine}
@@ -63,10 +71,8 @@ const Home = () => {
                 resizeMode='contain'
               />
             </View>
-
-            <View className="w-full h-[32px] justify-center bg-pink">
-              <Text>tag</Text>
-            </View>
+            
+            <Tag posts={tagPosts ?? []}/>
 
             <View className="bg-pink w-full h-[62px] justify-center">
               <Text className="text-3xl">Ads</Text>
