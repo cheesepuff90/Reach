@@ -1,4 +1,4 @@
-import { View, Text, Animated, Dimensions, FlatList, ScrollView, RefreshControl, Image, TouchableOpacity } from "react-native";
+import { View, Text, Animated, StyleSheet, useWindowDimensions, Dimensions, FlatList, ScrollView, RefreshControl, Image, TouchableOpacity } from "react-native";
 import React, { useState, useEffect, useRef } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import SearchInput from "../../../components/SearchInput";
@@ -10,6 +10,7 @@ import useAppwrite from "../../../lib/useAppwrite";
 import { images } from "../../../constants";
 import { icons } from '../../../constants'
 import { router, Link } from "expo-router";
+import { PageIndicator } from 'react-native-page-indicator';
 
 import { useGlobalContext } from "../../../context/GlobalProvider";
 
@@ -22,6 +23,11 @@ const Public = () => {
   const { data: posts, refetch } = useAppwrite(getAllPosts);
   const [refreshing, setRefreshing] = useState(false);
   // const { data: latestPosts} = useAppwrite(getLatestPosts);
+  const scrollX = useRef(new Animated.Value(0)).current;
+  // const { width, height } = useWindowDimensions();
+  const animatedCurrent = Animated.divide(scrollX, width);
+
+  
   const latestPosts = [
     {
       id: '1',
@@ -61,22 +67,6 @@ const Public = () => {
     setRefreshing(true);
     await refetch();
     setRefreshing(false);
-  };
-
-  const handleLeftPress = () => {
-    if (currentIndex > 0) {
-      const newIndex = currentIndex - 1;
-      setCurrentIndex(newIndex);
-      scrollViewRef.current.scrollTo({ x: newIndex * width, animated: true });
-    }
-  };
-
-  const handleRightPress = () => {
-    if (currentIndex < latestPosts.length - 1) {
-      const newIndex = currentIndex + 1;
-      setCurrentIndex(newIndex);
-      scrollViewRef.current.scrollTo({ x: newIndex * width, animated: true });
-    }
   };
 
   return (
@@ -143,59 +133,51 @@ const Public = () => {
               </View>
             </View>
 
-            <View className="py-5 px-8 justify-between flex-row bg-pink h-[149px]">
-              <TouchableOpacity onPress={handleLeftPress}>
-                <Image
-                  source={icons.left}
-                  className="mt-11"
-                />
-              </TouchableOpacity>
-
-              <ScrollView
+            <View className="justify-between flex-col bg-pink h-[149px]">
+              <Animated.ScrollView 
                 ref={scrollViewRef}
-                horizontal
-                pagingEnabled
-                scrollEnabled={true} // Disable manual scrolling
-                showsHorizontalScrollIndicator={true}
+                horizontal={true}
+                pagingEnabled={true}
+                showsHorizontalScrollIndicator={false}
+                onScroll={Animated.event([{ nativeEvent: {contentOffset: {x: scrollX}}}],
+                  {useNativeDriver: false,})}
+                scrollEventThrottle={16}
               >
                 {latestPosts.map((post, index) => (
-                  <View key={index} style={{ width: width-100, paddingHorizontal: 10 }}>
-                    <View className="flex-col w-full">
-                      <View className="flex-row">
+                  <View key={index} className="flex justify-center items-center" style={{ width }}>
+                    <View className="w-full items-center justify-center">
+                      <View className="flex-row items-center justify-center">
                         <Image 
                           source={icons.olympic}
-                          className="resize w-10 h-10"
+                          className="w-10 h-10"
+                          resizeMode="contain"
                         />
-                        <View>
-                          <Text className="text-xs">
-                   
+                        <View className="ml-3">
+                          <Text className="text-xs text-gray-500">
                             {post.category}
                           </Text>
-                          <Text className="text-xs">
+                          <Text className="text-xs text-black">
                             {post.university} * {post.author}
                           </Text>
                         </View>
                       </View>
 
-                      <View>
-                        <Text className="font-medium text-[18px]">
+                      <View className="mt-3 items-center">
+                        <Text className="text-lg font-bold">
                           {post.title}
                         </Text>
-                        <Text>
+                        <Text className="text-sm text-gray-500">
                           {post.description}
                         </Text>
                       </View>
                     </View>
                   </View>
                 ))}
-              </ScrollView>
+              </Animated.ScrollView>
 
-              <TouchableOpacity onPress={handleRightPress}>
-                <Image
-                  source={icons.right}
-                  className="mt-11"
-                />
-              </TouchableOpacity>
+              <View className="absolute left-5 right-5 bottom-12 items-center justify-center">
+                <PageIndicator count={latestPosts.length} current={animatedCurrent} />
+              </View>
             </View>
           </View>
         )}
@@ -212,5 +194,23 @@ const Public = () => {
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+  },
+  page: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  pageIndicator: {
+    left: 20,
+    right: 20,
+    bottom: 50,
+    position: 'absolute',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
 
 export default Public;
