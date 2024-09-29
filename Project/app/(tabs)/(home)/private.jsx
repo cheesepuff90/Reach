@@ -14,7 +14,7 @@ import { router, Link } from "expo-router";
 
 import { useGlobalContext } from "../../../context/GlobalProvider";
 
-const Home = () => {
+const Private = () => {
   const { user, setUser, setIsLogged } = useGlobalContext();
   const { data: posts, refetch } = useAppwrite(getAllPosts);
   const { data: latestPosts} = useAppwrite(getLatestPosts);
@@ -26,6 +26,7 @@ const Home = () => {
     await refetch();
     setRefreshing(false);
   };
+
 
   tagPosts = [
     {id: '1', tag: 'MBTI'},
@@ -63,6 +64,7 @@ const Home = () => {
             <View className="w-full h-8 justify-center">
               <View className="flex-row justify-between mx-[80px]">
                   <Link href="/public" className="text-gray-200 text-lg font-semibold">Public</Link>
+
                   <Text className="text-lg font-semibold">Private</Text>
               </View>
               <Image 
@@ -115,4 +117,5 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Private;
+

@@ -1,9 +1,8 @@
-import { View, Text, FlatList, RefreshControl, Image, TouchableOpacity } from "react-native";
-import React, { useState, useEffect } from "react";
+import { View, Text, Animated, StyleSheet, useWindowDimensions, Dimensions, FlatList, ScrollView, RefreshControl, Image, TouchableOpacity } from "react-native";
+import React, { useState, useEffect, useRef } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import SearchInput from "../../../components/SearchInput";
 import Trending from "../../../components/Trending";
-import Tag from "../../../components/Tag"
 import EmptyState from "../../../components/EmptyState";
 import { getAllPosts, getLatestPosts } from "../../../lib/appwrite";
 import VideoCard from "../../../components/VideoCard";
@@ -11,15 +10,58 @@ import useAppwrite from "../../../lib/useAppwrite";
 import { images } from "../../../constants";
 import { icons } from '../../../constants'
 import { router, Link } from "expo-router";
+import { PageIndicator } from 'react-native-page-indicator';
 
 import { useGlobalContext } from "../../../context/GlobalProvider";
 
-const Home = () => {
+const { width } = Dimensions.get("window");
+
+const Public = () => {
+  const scrollViewRef = useRef(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const { user, setUser, setIsLogged } = useGlobalContext();
   const { data: posts, refetch } = useAppwrite(getAllPosts);
-  const { data: latestPosts} = useAppwrite(getLatestPosts);
-
   const [refreshing, setRefreshing] = useState(false);
+  // const { data: latestPosts} = useAppwrite(getLatestPosts);
+  const scrollX = useRef(new Animated.Value(0)).current;
+  // const { width, height } = useWindowDimensions();
+  const animatedCurrent = Animated.divide(scrollX, width);
+
+  
+  const latestPosts = [
+    {
+      id: '1',
+      title: 'Korea King Awesome',
+      description: 'Lorem ipsum, Lorem ipsum',
+      category: 'MBTI',
+      university: 'University of Michigan',
+      author: 'wso2000',
+    },
+    {
+      id: '2',
+      title: 'Situationship Problem',
+      description: 'Lorem ipsum, Lorem ipsum',
+      category: 'Relationship',
+      university: 'Harvard University',
+      author: 'johndoe',
+    },
+    {
+      id: '3',
+      title: 'Hate College',
+      description: 'Lorem ipsum, Lorem ipsum',
+      category: 'Relationship',
+      university: 'Harvard University',
+      author: 'johndoe',
+    },
+    {
+      id: '4',
+      title: 'GPA fucked up',
+      description: 'Lorem ipsum, Lorem ipsum',
+      category: 'Relationship',
+      university: 'Harvard University',
+      author: 'johndoe',
+    },
+  ];
 
   const onRefresh = async () => {
     setRefreshing(true);
@@ -71,7 +113,7 @@ const Home = () => {
                 resizeMode='contain'
               />
             </View>
-            
+
             <Tag posts={tagPosts ?? []}/>
 
             <View className="bg-pink w-full h-[62px] justify-center">
@@ -96,8 +138,52 @@ const Home = () => {
               </View>
             </View>
 
-            <View className="bg-pink w-full h-[130px] justify-center">
-              <Text className="text-3xl">Category</Text>
+
+            <View className="justify-between flex-col bg-pink h-[149px]">
+              <Animated.ScrollView 
+                ref={scrollViewRef}
+                horizontal={true}
+                pagingEnabled={true}
+                showsHorizontalScrollIndicator={false}
+                onScroll={Animated.event([{ nativeEvent: {contentOffset: {x: scrollX}}}],
+                  {useNativeDriver: false,})}
+                scrollEventThrottle={16}
+              >
+                {latestPosts.map((post, index) => (
+                  <View key={index} className="flex justify-center items-center" style={{ width }}>
+                    <View className="w-full items-center justify-center">
+                      <View className="flex-row items-center justify-center">
+                        <Image 
+                          source={icons.olympic}
+                          className="w-10 h-10"
+                          resizeMode="contain"
+                        />
+                        <View className="ml-3">
+                          <Text className="text-xs text-gray-500">
+                            {post.category}
+                          </Text>
+                          <Text className="text-xs text-black">
+                            {post.university} * {post.author}
+                          </Text>
+                        </View>
+                      </View>
+
+                      <View className="mt-3 items-center">
+                        <Text className="text-lg font-bold">
+                          {post.title}
+                        </Text>
+                        <Text className="text-sm text-gray-500">
+                          {post.description}
+                        </Text>
+                      </View>
+                    </View>
+                  </View>
+                ))}
+              </Animated.ScrollView>
+
+              <View className="absolute left-5 right-5 bottom-12 items-center justify-center">
+                <PageIndicator count={latestPosts.length} current={animatedCurrent} />
+              </View>
             </View>
           </View>
         )}
@@ -115,4 +201,22 @@ const Home = () => {
   );
 };
 
-export default Home;
+const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+  },
+  page: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  pageIndicator: {
+    left: 20,
+    right: 20,
+    bottom: 50,
+    position: 'absolute',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
+
+export default Public;
