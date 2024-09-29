@@ -9,7 +9,7 @@ const SearchInput = () => {
   const [query, setQuery] = useState('')
 
   return (
-      <View className="border-2 border-black w-1/2 h-10 px-2 bg-white rounded-2xl focus:border-secondary items-center flex flex-row space-x-4">
+      <View className="w-56 h-10 px-2 bg-white-100 rounded-2xl focus:border-secondary items-center flex flex-row space-x-4">
         <TouchableOpacity
           onPress={() =>{
             if(!query) {
@@ -22,7 +22,7 @@ const SearchInput = () => {
         >
             <Image 
                 source = {icons.searchGray}
-                className = 'w-[26px] h-[26px] mt-0.5'
+                className = 'w-[26px] h-[20px] mt-0.5'
                 resizemode = 'contain'
             />
         </TouchableOpacity>

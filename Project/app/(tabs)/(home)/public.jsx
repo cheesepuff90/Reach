@@ -69,6 +69,13 @@ const Public = () => {
     setRefreshing(false);
   };
 
+  tagPosts = [
+    {id: '1', tag: 'MBTI'},
+    {id: '2', tag: 'Research'},
+    {id: '3', tag: 'Iternship'},
+    {id: '4', tag: 'All'}
+  ]
+
   return (
     <SafeAreaView className="bg-white h-full">
       <FlatList
@@ -98,7 +105,7 @@ const Public = () => {
             <View className="w-full h-8 justify-center">
               <View className="flex-row justify-around">
                   <Text className="text-lg font-semibold">Public</Text>
-                  <Link href="/private" className="text-lg font-semibold">Private</Link>
+                  <Link href="/private" className="text-gray-200 text-lg font-semibold">Private</Link>
               </View>
               <Image 
                 source={images.underLine}
@@ -107,9 +114,7 @@ const Public = () => {
               />
             </View>
 
-            <View className="w-full h-[32px] justify-center bg-pink">
-              <Text>tag</Text>
-            </View>
+            <Tag posts={tagPosts ?? []}/>
 
             <View className="bg-pink w-full h-[62px] justify-center">
               <Text className="text-3xl">Ads</Text>
@@ -132,6 +137,7 @@ const Public = () => {
                   />
               </View>
             </View>
+
 
             <View className="justify-between flex-col bg-pink h-[149px]">
               <Animated.ScrollView 
