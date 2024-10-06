@@ -11,7 +11,7 @@ import { images } from "../../../constants";
 import { icons } from '../../../constants'
 import { router, Link } from "expo-router";
 import { PageIndicator } from 'react-native-page-indicator';
-
+import Tag from '../../../components/Tag'
 import { useGlobalContext } from "../../../context/GlobalProvider";
 
 const { width } = Dimensions.get("window");
