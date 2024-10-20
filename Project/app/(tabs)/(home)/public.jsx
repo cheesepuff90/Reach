@@ -148,6 +148,7 @@ const Public = () => {
                 onScroll={Animated.event([{ nativeEvent: {contentOffset: {x: scrollX}}}],
                   {useNativeDriver: false,})}
                 scrollEventThrottle={16}
+                className="bottom-3"
               >
                 {latestPosts.map((post, index) => (
                   <View key={index} className="flex justify-center items-center" style={{ width }}>
@@ -182,7 +183,7 @@ const Public = () => {
               </Animated.ScrollView>
 
               <View className="absolute left-5 right-5 bottom-12 items-center justify-center">
-                <PageIndicator count={latestPosts.length} current={animatedCurrent} />
+                <PageIndicator className="top-8" count={latestPosts.length} current={animatedCurrent} />
               </View>
             </View>
           </View>
